@@ -1,0 +1,15 @@
+- form_for @user do |f|
+  .row.clearfix
+    = f.label :username
+    = f.text_field :username
+  .row.clearfix
+    = f.label :email
+    = f.text_field :email
+  .row.clearfix
+    = f.label :password
+    = f.password_field :password
+  .row.clearfix
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation
+  .row.clearfix
+    = f.submit 'Signup'

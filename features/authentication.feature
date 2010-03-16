@@ -11,9 +11,8 @@ Feature: Authentication
     And I fill in "Password" with "098765"
     And I fill in "Password Confirmation" with "098765"
     When I press "Signup"
-    Then I should be on the signup confirmation page
-    And I should receive an email at "paulbjensen@gmail.com"
-    And I should see "Thanks for signing up, please click the activation link sent to your email account"
+    Then I should be on the homepage
+    And I should see "Thanks for signing up"
   
   Scenario: Fail to signup as a new user
     Given I am on the homepage

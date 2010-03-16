@@ -5,7 +5,12 @@
     = stylesheet_link_tag 'reset'
   %body
     #wrapper
+      - flash.each do |key, msg|
+        = content_tag(:div, msg, :id => key)
       #header
+        .left [LOGO]
+        .right
+          = link_to "Signup", signup_path
       #main
         = yield
       #footer
