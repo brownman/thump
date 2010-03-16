@@ -7,4 +7,4 @@ Rails::Initializer.run do |config|
   config.gem 'authlogic',           :version => '2.1.3'
   config.gem 'inherited_resources', :version => '0.9.2'
   config.time_zone = 'UTC'
-end
+  end

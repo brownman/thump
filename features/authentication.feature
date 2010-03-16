@@ -6,7 +6,7 @@ Feature: Authentication
   Scenario: Signup as a new user
     Given I am on the homepage
     And I follow "Signup"
-    And I fill in "Username" with "paulbjensen"
+    And I fill in "Username/Email" with "paulbjensen"
     And I fill in "Email" with "paulbjensen@gmail.com"
     And I fill in "Password" with "098765"
     And I fill in "Password Confirmation" with "098765"
@@ -17,7 +17,7 @@ Feature: Authentication
   Scenario: Fail to signup as a new user
     Given I am on the homepage
     And I follow "Signup"
-    And I fill in "Username" with "paulbjensen"
+    And I fill in "Username/Email" with "paulbjensen"
     And I fill in "Email" with "paulbjensen@gmail.com"
     And I fill in "Password" with "098765"
     And I fill in "Password Confirmation" with "98765"
@@ -26,27 +26,27 @@ Feature: Authentication
     And I should see "There's a problem with the signup information. Please correct and try again."
     
   Scenario: Login as an existing user
-    Given a user exists with username: "paulbjensen", email: "paulbjensen@gmail.com", password: "098765", password_confirmation: "098765"
+    Given a user exists with login: "paulbjensen", email: "paulbjensen@gmail.com", password: "098765", password_confirmation: "098765"
     And I am on the homepage
     And I follow "Login"
-    And I fill in "Username" with "paulbjensen"
+    And I fill in "Username/Email" with "paulbjensen"
     And I fill in "Password" with "098765"
     When I press "Login"
     Then I should be on the homepage
     And I should see "Hi paulbjensen"
     
   Scenario: Fail to login as an existing user
-    Given a user exists with username: "paulbjensen", email: "paulbjensen@gmail.com", password: "098765", password_confirmation: "098765"
+    Given a user exists with login: "paulbjensen", email: "paulbjensen@gmail.com", password: "098765", password_confirmation: "098765"
     And I am on the homepage
     And I follow "Login"
-    And I fill in "Username" with "paulbjensen"
+    And I fill in "Username/Email" with "paulbjensen"
     And I fill in "Password" with "98765"
     When I press "Login"
     Then I should be on the create user sessions page
     And I should see "There's a problem with the login information. Please correct and try again."
   
   Scenario: Change an existing user's password
-    Given I am logged in with username "paulbjensen" and password "098765"
+    Given I am logged in with login "paulbjensen" and password "098765"
     And I follow "Account"
     And I follow "Change Password"
     And I fill in "Old Password" with "098765"
@@ -57,7 +57,7 @@ Feature: Authentication
     And I should see "Your password was changed"
     
   Scenario: Fail to change an existing user's password
-    Given I am logged in with username "paulbjensen" and password "098765"
+    Given I am logged in with login "paulbjensen" and password "098765"
     And I follow "Account"
     And I follow "Change Password"
     And I fill in "Old Password" with "098765"
