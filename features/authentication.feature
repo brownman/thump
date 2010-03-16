@@ -22,7 +22,7 @@ Feature: Authentication
     And I fill in "Password" with "098765"
     And I fill in "Password Confirmation" with "98765"
     When I press "Signup"
-    Then I should be on the signup page
+    Then I should be on the create user page
     And I should see "There's a problem with the signup information. Please correct and try again."
     
   Scenario: Login as an existing user
