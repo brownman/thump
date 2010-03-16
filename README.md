@@ -12,6 +12,7 @@ Requirements
 * cucumber          (>= 0.6.3)
 * database_cleaner  (>= 0.5.0)
 * jspec             (>= 3.3.3)
+* haml              (>= 2.2.19)
 
 Installation
 ===
