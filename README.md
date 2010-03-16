@@ -15,6 +15,7 @@ Requirements
 * haml                (>= 2.2.19)
 * authlogic           (>= 2.1.3)
 * inherited_resources (>= 0.9.2)
+* pickle              (>= 0.2.2)
 
 Installation
 ===

@@ -1,0 +1,9 @@
+- form_for @user_session do |f|
+  .row
+    = f.label :username
+    = f.text_field :username
+  .row
+    = f.label :password
+    = f.password_field :password
+  .row
+    = f.submit 'Login'
