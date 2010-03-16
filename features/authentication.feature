@@ -36,13 +36,13 @@ Feature: Authentication
     And I should see "Hi paulbjensen"
     
   Scenario: Fail to login as an existing user
-    Given there is a user with username "paulbjensen" and password "098765"
+    Given a user exists with username: "paulbjensen", email: "paulbjensen@gmail.com", password: "098765", password_confirmation: "098765"
     And I am on the homepage
     And I follow "Login"
     And I fill in "Username" with "paulbjensen"
     And I fill in "Password" with "98765"
     When I press "Login"
-    Then I should be on the login page
+    Then I should be on the create user sessions page
     And I should see "There's a problem with the login information. Please correct and try again."
   
   Scenario: Change an existing user's password

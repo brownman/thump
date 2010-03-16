@@ -12,6 +12,8 @@ module NavigationHelpers
       root_path
     when  /the create user page/
       users_path
+    when /the create user sessions page/
+      user_sessions_path
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
