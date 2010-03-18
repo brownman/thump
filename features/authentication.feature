@@ -34,6 +34,16 @@ Feature: Authentication
     When I press "Login"
     Then I should be on the homepage
     And I should see "Hi paulbjensen"
+  
+  Scenario: Login using an email address
+    Given a user exists with login: "paulbjensen", email: "paulbjensen@gmail.com", password: "098765", password_confirmation: "098765"
+    And I am on the homepage
+    And I follow "Login"
+    And I fill in "Username/Email" with "paulbjensen@gmail.com"
+    And I fill in "Password" with "098765"
+    When I press "Login"
+    Then I should be on the homepage
+    And I should see "Hi paulbjensen"
     
   Scenario: Fail to login as an existing user
     Given a user exists with login: "paulbjensen", email: "paulbjensen@gmail.com", password: "098765", password_confirmation: "098765"
@@ -54,7 +64,7 @@ Feature: Authentication
     And I press "login"
     When I follow "Logout"
     Then I should be on the homepage
-    And I should see "You're logged out"
+    And I should see "You're logged out"  
   
   Scenario: Change an existing user's password
     Given I am logged in with login "paulbjensen" and password "098765"
