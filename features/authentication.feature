@@ -45,6 +45,17 @@ Feature: Authentication
     Then I should be on the create user sessions page
     And I should see "There's a problem with the login information. Please correct and try again."
   
+  Scenario: Logout as an existing user
+    Given a user exists with login: "paulbjensen", email: "paulbjensen@gmail.com", password: "098765", password_confirmation: "098765"
+    And I am on the homepage
+    And I follow "Login"
+    And I fill in "Username/Email" with "paulbjensen"
+    And I fill in "Password" with "098765"
+    And I press "login"
+    When I follow "Logout"
+    Then I should be on the homepage
+    And I should see "You're logged out"
+  
   Scenario: Change an existing user's password
     Given I am logged in with login "paulbjensen" and password "098765"
     And I follow "Account"
