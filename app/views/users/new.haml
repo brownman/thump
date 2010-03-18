@@ -1,15 +1,15 @@
 - form_for @user do |f|
-  .row.clearfix
+  .row
     = f.label :login, 'Username/Email'
-    = f.text_field :login
-  .row.clearfix
+    = f.text_field :login, :size => 20
+  .row
     = f.label :email
     = f.text_field :email
-  .row.clearfix
+  .row
     = f.label :password
-    = f.password_field :password
-  .row.clearfix
+    = f.password_field :password, :size => 20
+  .row
     = f.label :password_confirmation
-    = f.password_field :password_confirmation
-  .row.clearfix
+    = f.password_field :password_confirmation, :size => 20
+  .row
     = f.submit 'Signup'

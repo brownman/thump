@@ -12,6 +12,7 @@ class UsersController < ApplicationController
   end
   
   def settings
+    render :layout => logged_in? ? 'app' : 'site'
   end
   
   private
