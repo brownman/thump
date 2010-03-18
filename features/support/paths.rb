@@ -14,6 +14,10 @@ module NavigationHelpers
       users_path
     when /the create user sessions page/
       user_sessions_path
+    when /the user settings page for "(.*)"/
+      settings_user_path(User.find_by_login!($1))
+    when /the update user password page for "(.*)"/
+      user_password_path(User.find_by_login!($1))
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

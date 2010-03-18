@@ -11,6 +11,8 @@
         .left [LOGO]
         .right
           - if current_user
+            = link_to "Settings", settings_user_path(current_user)
+            |            
             = link_to "Logout", logout_path
           - else
             = link_to "Signup", signup_path

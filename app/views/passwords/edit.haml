@@ -1,0 +1,9 @@
+- form_for current_user, :url => user_password_path, :html => {:method => :put} do |f|
+  .row
+    = f.label :password, "New Password"
+    = f.password_field :password
+  .row
+    = f.label :password_confirmation, "Confirm New Password"
+    = f.password_field :password_confirmation
+  .row
+    = f.submit "change password"

@@ -68,22 +68,20 @@ Feature: Authentication
   
   Scenario: Change an existing user's password
     Given I am logged in with login "paulbjensen" and password "098765"
-    And I follow "Account"
-    And I follow "Change Password"
-    And I fill in "Old Password" with "098765"
+    And I follow "Settings"
+    And I follow "Password"
     And I fill in "New Password" with "012345"
     And I fill in "Confirm New Password" with "012345"
-    When I press "Update"
-    Then I should be on the account page
+    When I press "change password"
+    Then I should be on the user settings page for "paulbjensen"
     And I should see "Your password was changed"
     
   Scenario: Fail to change an existing user's password
     Given I am logged in with login "paulbjensen" and password "098765"
-    And I follow "Account"
-    And I follow "Change Password"
-    And I fill in "Old Password" with "098765"
+    And I follow "Settings"
+    And I follow "Password"
     And I fill in "New Password" with "012345"
     And I fill in "Confirm New Password" with ""
-    When I press "Update"
-    Then I should be on the edit user page
+    When I press "change password"
+    Then I should be on the update user password page for "paulbjensen"
     And I should see "There's a problem with the password information. Please correct and try again."
