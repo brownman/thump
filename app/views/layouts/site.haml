@@ -1,0 +1,23 @@
+!!!
+%html
+  %head
+    %title Thump - a location aware social network
+    = stylesheet_link_tag 'reset'
+  %body
+    #wrapper
+      - flash.each do |key, msg|
+        = content_tag(:div, msg, :id => key)
+      #header
+        .left [LOGO]
+        .right
+          - if current_user
+            = link_to "Settings", settings_user_path(current_user)
+            |            
+            = link_to "Logout", logout_path
+          - else
+            = link_to "Signup", signup_path
+            |
+            = link_to "Login", login_path
+      #main
+        = yield
+      #footer
