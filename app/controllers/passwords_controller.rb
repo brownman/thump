@@ -3,6 +3,7 @@ class PasswordsController < ApplicationController
   before_filter :check_if_current_user
   
   def edit
+    render :layout => logged_in? ? 'app' : 'site'
   end
 
   def update
@@ -18,7 +19,6 @@ class PasswordsController < ApplicationController
   private
   
   def check_if_current_user
-    
     if (!current_user || current_user.id != params[:user_id].to_i)
       flash[:error] = "You cannot edit that resource"
       redirect_to root_url

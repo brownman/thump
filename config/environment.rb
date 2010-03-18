@@ -7,4 +7,10 @@ Rails::Initializer.run do |config|
   config.gem 'authlogic',           :version => '2.1.3'
   config.gem 'inherited_resources', :version => '0.9.2'
   config.time_zone = 'UTC'
-  end
+
+  GOOGLE_MAPS_API_KEY = {
+    'thump.local'           => 'ABQIAAAAm2KT5pQmVu_d_LD4iTi1hhTqfP3gIxLePz0uARFMhd_RWKvHGBTXHiNUsShqXeA1xZRCYRw62xpOFA'
+  }
+
+end
+

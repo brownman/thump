@@ -2,13 +2,13 @@
 %html
   %head
     %title Thump - a location aware social network
-    = stylesheet_link_tag 'reset'
+    = stylesheet_link_tag 'reset', 'site'
   %body
     #wrapper
       - flash.each do |key, msg|
         = content_tag(:div, msg, :id => key)
       #header
-        .left [LOGO]
+        .left= image_tag("thump-logo.png")
         .right
           - if current_user
             = link_to "Settings", settings_user_path(current_user)
@@ -18,6 +18,6 @@
             = link_to "Signup", signup_path
             |
             = link_to "Login", login_path
-      #main
+      #main.clearfix
         = yield
-      #footer
+      #footer.clearfix

@@ -1,0 +1,43 @@
+body {
+  font-size: 62.5%;
+  color: white;
+  background: #6D9932;
+  font-family: helvetica, arial; }
+
+.row {
+  margin: 1em; }
+
+label {
+  font-size: 1.4em;
+  float: left;
+  width: 11em;
+  margin-right: 1em;
+  padding-top: 5px; }
+
+input[type="text"], input[type="password"] {
+  font-size: 1.4em;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border: solid 1px #6D9932;
+  padding: 3px; }
+
+input[type="submit"] {
+  font-size: 2em;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  background: #413219;
+  border: solid 1px white;
+  color: white;
+  padding: 5px; }
+
+input[type="submit"]:hover {
+  cursor: pointer; }
+
+#wrapper {
+  margin: 0 auto;
+  width: 96em;
+  position: relative; }
+  #wrapper #header {
+    padding-top: 10px;
+    float: left;
+    width: 96em; }
