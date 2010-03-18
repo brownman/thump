@@ -1,3 +1,5 @@
 .uni
-  %h1= current_user.login + "'s settings"
+  .left
+    = gravatar_for current_user
+    %h1= current_user.login + "'s settings"
   = link_to "Password", edit_user_password_path(current_user)
