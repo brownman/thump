@@ -19,8 +19,8 @@ app.configure do |c|
     c.datastore = Dragonfly::DataStorage::S3DataStore.new
     c.datastore.configure do |d|
       d.bucket_name = 'thump_production'
-      d.access_key_id = ENV['S3_KEY'] || raise("ENV variable 'S3_KEY' needs to be set")
-      d.secret_access_key = ENV['S3_SECRET'] || raise("ENV variable 'S3_SECRET' needs to be set")
+      d.access_key_id = S3_KEY || raise("ENV variable 'S3_KEY' needs to be set")
+      d.secret_access_key = S3_SECRET || raise("ENV variable 'S3_SECRET' needs to be set")
     end
   # and filesystem for other environments
   else
