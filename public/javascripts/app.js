@@ -5,6 +5,12 @@ $(document).ready(function(){
   map.setCenter(new GLatLng(lat,lng), 13);    
   map.addControl(new GSmallMapControl());
   markers = [];
+  $.ajax({type:"GET", url:"/users/with_locations", success:function(data) {
+    $.each(data, function(i,v){
+      addMarker(v);
+    });
+  }});
+  
   $("a.update_location").click(function(){
     if (navigator.geolocation && navigator.vendor != 'Apple Computer, Inc.') {
       navigator.geolocation.getCurrentPosition(function(position) { 

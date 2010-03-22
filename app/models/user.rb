@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   acts_as_authentic
   belongs_to :location
   after_update :checkout_if_no_location
+  named_scope :without_locations, :conditions => {:location_id => nil}
   
   def self.find_by_login_or_email(login)
     find_by_login(login) || find_by_email(login)

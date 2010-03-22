@@ -33,6 +33,20 @@ class UsersController < ApplicationController
     render :json => object
   end
   
+  def with_locations
+    collection = []
+    [User.all - User.without_locations].flatten.each do |u| 
+      collection << {
+        :user_id      => u.id, 
+        :login        => u.login, 
+        :latitude     => u.location.latitude,
+        :longitude    => u.location.longitude,
+        :full_address => u.location.full_address
+      }
+    end
+    render :json => collection
+  end
+  
   private
   
   def check_if_current_user

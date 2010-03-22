@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :users, :member => {:settings => :get, :set_location => :post} do |user|
+  map.resources :users, :member => {:settings => :get, :set_location => :post}, :collection => {:with_locations => :get} do |user|
     user.resource :password
   end
   map.resource
