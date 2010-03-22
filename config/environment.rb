@@ -10,7 +10,8 @@ Rails::Initializer.run do |config|
   config.gem 'pusher',              :version => '0.3.0'
   config.time_zone = 'UTC'
   GOOGLE_MAPS_API_KEY = {
-    'thump.local'           => 'ABQIAAAAm2KT5pQmVu_d_LD4iTi1hhTqfP3gIxLePz0uARFMhd_RWKvHGBTXHiNUsShqXeA1xZRCYRw62xpOFA'
+    'thump.local'           => 'ABQIAAAAm2KT5pQmVu_d_LD4iTi1hhTqfP3gIxLePz0uARFMhd_RWKvHGBTXHiNUsShqXeA1xZRCYRw62xpOFA',
+    'thump.heroku.com'      => 'ABQIAAAAm2KT5pQmVu_d_LD4iTi1hhTUT-E58Qa5sCoosu1bwGIhQafyzxQMkeTaTPOLeTweaYULACBHVQWePQ'
   }
 
 end
