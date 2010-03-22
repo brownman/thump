@@ -66,27 +66,14 @@ class User < ActiveRecord::Base
   
   def gravatar_url
     "http://www.gravatar.com/avatar/" + MD5::md5(email.downcase).to_s + ".jpg?s=36"
-  end
-  
-  def generate_bubble_image
-    dry_processing(gravatar_url)        
-  end
-  
+  end  
   
   private
   
   def checkout_if_no_location
     Pusher['thump-development'].trigger('userCheckedOut', {:user_id => id, :login => login}) if location.nil?
   end
-  
-  protected
-  
-  def dry_processing(input_path, opts={})
-    processor = ZenBubble.new(input_path, opts.merge({:tmpdir => "#{RAILS_ROOT}/tmp/processing_files/"}))
-    raise processor.output_file_path.inspect
-    #File.open(processor.output_file_path)
-  end
-  
+    
   
 end
 

@@ -28,7 +28,7 @@ class UsersController < ApplicationController
       :full_address => full_address, 
       :user_id      => current_user.id,
       :login        => current_user.login,
-      :gravatar_url => u.gravatar_url
+      :gravatar_url => current_user.gravatar_url
     }
     Pusher['thump-development'].trigger('userCheckedIn', object)
     render :json => object
