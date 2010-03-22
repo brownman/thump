@@ -1,10 +1,23 @@
+require 'tempfile'
+
 class User < ActiveRecord::Base
+
+  class Tempfile < ::Tempfile
+    # Replaces Tempfile's +make_tmpname+ with one that honors file extensions.
+    def make_tmpname(basename, n)
+      extension = File.extname(basename)
+      sprintf("%s,%d,%d%s", File.basename(basename, extension), $$, n, extension)
+    end
+  end
+
   require 'md5'
   require 'geokit'
   acts_as_authentic
   belongs_to :location
   after_update :checkout_if_no_location
   named_scope :without_locations, :conditions => {:location_id => nil}
+  image_accessor :marker
+  before_create :generate_marker
   
   def self.find_by_login_or_email(login)
     find_by_login(login) || find_by_email(login)
@@ -70,10 +83,22 @@ class User < ActiveRecord::Base
   
   private
   
+  def generate_marker
+    tmpfile = Tempfile.new([UUID.generate, "png"].compact.join("."))
+    tmpfile.binmode
+    `convert #{gravatar_url} \
+              -bordercolor white  -border 6 \
+              -bordercolor grey60 -border 1 \
+              -background  none   -rotate 6 \
+              -background  black  \\( +clone -shadow 60x4+4+4 \\) +swap \
+              -background  none   -flatten \
+              #{tmpfile.path}`
+    self.marker = File.open(tmpfile.path)
+  end
+  
   def checkout_if_no_location
     Pusher['thump-development'].trigger('userCheckedOut', {:user_id => id, :login => login}) if location.nil?
-  end
-    
+  end    
   
 end
 

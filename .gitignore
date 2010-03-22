@@ -5,3 +5,4 @@ log/*.log
 tmp/**/*
 .DS_STORE
 rerun.txt
+public/system/**/*

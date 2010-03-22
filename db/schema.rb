@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100318201407) do
+ActiveRecord::Schema.define(:version => 20100322222530) do
 
   create_table "locations", :force => true do |t|
     t.string   "full_address"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20100318201407) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "location_id"
+    t.string   "marker_uid"
   end
 
 end
