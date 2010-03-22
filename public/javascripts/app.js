@@ -1,4 +1,9 @@
 $(document).ready(function(){
+  baseIcon = new GIcon(G_DEFAULT_ICON);
+  baseIcon.image  = "/images/marker.png"
+  baseIcon.iconSize = new GSize(40, 51);
+  baseIcon.iconAnchor = new GPoint(20, 51);  
+  
   map = new GMap2(document.getElementById("map"));
   lat = $(".latitude").text();
   lng = $(".longitude").text();
@@ -10,7 +15,7 @@ $(document).ready(function(){
       addMarker(v);
     });
   }});
-  
+    
   $("a.update_location").click(function(){
     if (navigator.geolocation && navigator.vendor != 'Apple Computer, Inc.') {
       navigator.geolocation.getCurrentPosition(function(position) { 
@@ -70,7 +75,7 @@ socket.bind('userCheckedOut', function(data) {
 
 function addMarker(data){
   removeMarker(data);
-  var marker = new GMarker(new GLatLng(data.latitude, data.longitude));
+  var marker = new GMarker(new GLatLng(data.latitude, data.longitude), {icon:baseIcon});
   markers.push({'marker':marker, 'user_id':data.user_id})
   map.addOverlay(marker);
   return false;
