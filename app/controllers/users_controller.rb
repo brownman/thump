@@ -27,7 +27,8 @@ class UsersController < ApplicationController
       :longitude    => longitude, 
       :full_address => full_address, 
       :user_id      => current_user.id,
-      :login        => current_user.login
+      :login        => current_user.login,
+      :gravatar_url => u.gravatar_url
     }
     Pusher['thump-development'].trigger('userCheckedIn', object)
     render :json => object
@@ -41,7 +42,8 @@ class UsersController < ApplicationController
         :login        => u.login, 
         :latitude     => u.location.latitude,
         :longitude    => u.location.longitude,
-        :full_address => u.location.full_address
+        :full_address => u.location.full_address,
+        :gravatar_url => u.gravatar_url
       }
     end
     render :json => collection
@@ -52,5 +54,5 @@ class UsersController < ApplicationController
   def check_if_current_user
     redirect_to root_url if !current_user || current_user.id != params[:id].to_i
   end
-  
+    
 end

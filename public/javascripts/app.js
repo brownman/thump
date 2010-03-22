@@ -1,8 +1,4 @@
 $(document).ready(function(){
-  baseIcon = new GIcon(G_DEFAULT_ICON);
-  baseIcon.image  = "/images/marker.png"
-  baseIcon.iconSize = new GSize(40, 51);
-  baseIcon.iconAnchor = new GPoint(20, 51);  
   
   map = new GMap2(document.getElementById("map"));
   lat = $(".latitude").text();
@@ -75,6 +71,10 @@ socket.bind('userCheckedOut', function(data) {
 
 function addMarker(data){
   removeMarker(data);
+  baseIcon = new GIcon(G_DEFAULT_ICON);
+  baseIcon.image  = data.gravatar_url; //"/images/marker.png" 
+  baseIcon.iconSize = new GSize(36, 36); //40, 51
+  baseIcon.iconAnchor = new GPoint(18, 36); //20, 51  
   var marker = new GMarker(new GLatLng(data.latitude, data.longitude), {icon:baseIcon});
   markers.push({'marker':marker, 'user_id':data.user_id})
   map.addOverlay(marker);
