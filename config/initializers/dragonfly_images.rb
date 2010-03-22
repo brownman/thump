@@ -1,4 +1,6 @@
 require 'dragonfly'
+S3_KEY    = '1NYPX0J3FR6JWHF2YN02'
+S3_SECRET = '58Qu+kiOk76R4YhU7fRhEvkhjc5GFB79w1YACwBw'
 
 # Configuration
 app = Dragonfly::App[:images]
