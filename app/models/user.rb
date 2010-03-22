@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   after_update :checkout_if_no_location
   named_scope :without_locations, :conditions => {:location_id => nil}
   image_accessor :marker
-  before_create :generate_marker
+  # before_create :generate_marker
   
   def self.find_by_login_or_email(login)
     find_by_login(login) || find_by_email(login)
