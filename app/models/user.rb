@@ -1,8 +1,6 @@
 class User < ActiveRecord::Base
   require 'md5'
   require 'geokit'
-  require 'lib/zen'
-  require 'lib/zenbubble'
   acts_as_authentic
   belongs_to :location
   after_update :checkout_if_no_location
