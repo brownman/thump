@@ -3,16 +3,24 @@
   %head
     %title Thump - a location aware social network
     = stylesheet_link_tag 'reset', 'app'
-    = javascript_include_tag "http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true_or_false&amp;key=#{GOOGLE_MAPS_API_KEY[request.host]}&sensor=true", 'jquery', 'app'
+    = javascript_include_tag "http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true_or_false&amp;key=#{GOOGLE_MAPS_API_KEY[request.host]}&sensor=true", 'jquery', 'http://pusherapp.com/js/v1/pusher.js?', 'app'
   %body
     #map
     #header
       #user_nav
-        / = gravatar_for current_user, :size => '20'
+        #location 
+          Your current location:
+          .hidden.latitude= current_user.location ? current_user.location.latitude : 51.5001524
+          .hidden.longitude= current_user.location ? current_user.location.longitude : -0.1262362
+          %span= current_user.location ? current_user.location.full_address : "unspecified"
+          = link_to "Update", "#", :class => 'button update_location', :id => current_user.id
         = link_to "Settings", settings_user_path(current_user)
         |            
         = link_to "Logout", logout_path
     - flash.each do |key, msg|
       = content_tag(:div, msg, :id => key)
     #main
+      %form#update_location.hidden{:action => set_location_user_path(current_user), :method => 'post'}
+        %input{:type => 'text', :name => "location", :size => 25, :value => "Type your address here"}
+        %input{:type => 'submit', :value => 'GO'}
       = yield

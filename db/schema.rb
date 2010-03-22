@@ -9,7 +9,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100316122435) do
+ActiveRecord::Schema.define(:version => 20100318201407) do
+
+  create_table "locations", :force => true do |t|
+    t.string   "full_address"
+    t.string   "street_number"
+    t.string   "street_name"
+    t.string   "street_address"
+    t.string   "city"
+    t.string   "province"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "country"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "login"
@@ -20,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20100316122435) do
     t.string   "current_login_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "location_id"
   end
 
 end

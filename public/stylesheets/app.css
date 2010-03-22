@@ -24,6 +24,14 @@ input[type="submit"] {
   color: white;
   padding: 5px; }
 
+.button {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  background: #679929;
+  border: solid 1px #D8FF7F;
+  color: white;
+  padding: 2px; }
+
 input[type="submit"]:hover {
   cursor: pointer; }
 
@@ -34,6 +42,8 @@ body {
   font-size: 62.5%; }
   body a, body a:visited, body a:-webkit-any-link:active {
     color: white; }
+  body a:hover {
+    color: #A8ED4D; }
   body #map {
     position: absolute;
     top: 0px;
@@ -49,10 +59,17 @@ body {
     position: absolute;
     top: 10px;
     right: 10px;
-    padding: 5px;
+    padding: 7px;
     background: rgba(0,0,0,0.8);
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px; }
+  body #location {
+    float: left;
+    padding-right: 1em;
+    border-right: solid 1px white;
+    margin-right: 1em; }
+    body #location span {
+      color: #D8FF7F; }
   body .uni {
     background: rgba(0,0,0,0.75);
     z-index: 2;
@@ -67,3 +84,23 @@ body {
     -moz-border-radius: 10px; }
     body .uni h1 {
       font-size: 2em; }
+
+form#update_location {
+  z-index: 2;
+  position: absolute;
+  top: 5em;
+  right: 1em;
+  padding: 5px;
+  background: rgba(0,0,0,0.8);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px; }
+  form#update_location input[type='text'] {
+    font-size: 2em; }
+  form#update_location input[type='submit'] {
+    background: #47992F;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 2em; }
