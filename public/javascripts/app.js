@@ -69,8 +69,8 @@ socket.bind('userCheckedOut', function(data) {
 
 
 function addMarker(data){
-  var marker = new GMarker(new GLatLng(data.latitude, data.longitude));
   removeMarker(data);
+  var marker = new GMarker(new GLatLng(data.latitude, data.longitude));
   markers.push({'marker':marker, 'user_id':data.user_id})
   map.addOverlay(marker);
   return false;
