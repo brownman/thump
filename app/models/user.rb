@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   after_update :checkout_if_no_location
   named_scope :without_locations, :conditions => {:location_id => nil}
   image_accessor :marker
-  # before_create :generate_marker
+  before_create :generate_marker
   
   def self.find_by_login_or_email(login)
     find_by_login(login) || find_by_email(login)
@@ -84,7 +84,7 @@ class User < ActiveRecord::Base
   private
   
   def generate_marker
-    tmpfile = Tempfile.new([UUID.generate, "png"].compact.join("."))
+    tmpfile = Tempfile.new([(RAILS_ROOT+"/tmp/"+ UUID.generate), "png"].compact.join("."))
     tmpfile.binmode
     `convert #{gravatar_url} \
               -bordercolor white  -border 6 \
