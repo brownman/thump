@@ -3,6 +3,9 @@
   %head
     %title Thump - a location aware social network
     = stylesheet_link_tag 'reset', 'app'
+    = javascript_include_tag "swfobject", "FABridge", "web_socket"
+    :javascript
+      WebSocket.__swfLocation = "/WebSocketMain.swf";
     = javascript_include_tag "http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true_or_false&amp;key=#{GOOGLE_MAPS_API_KEY[request.host]}&sensor=true", 'jquery', 'http://pusherapp.com/js/v1/pusher.js?', 'app'
   %body
     #map

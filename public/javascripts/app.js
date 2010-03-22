@@ -4,6 +4,7 @@ $(document).ready(function(){
   lng = $(".longitude").text();
   map.setCenter(new GLatLng(lat,lng), 13);    
   map.addControl(new GSmallMapControl());
+  markers = [];
   $("a.update_location").click(function(){
     if (navigator.geolocation && navigator.vendor != 'Apple Computer, Inc.') {
       navigator.geolocation.getCurrentPosition(function(position) { 
@@ -17,7 +18,7 @@ $(document).ready(function(){
         }});
       });
     } else {
-      $("form#update_location").removeClass("hidden");
+      $("form#update_location").fadeIn("slow");
     }
   });
   
@@ -39,6 +40,7 @@ $(document).ready(function(){
       $('#location span').text(data.full_address);
       lat = data.latitude;
       lng = data.longitude;
+      $('form#update_location').fadeOut("slow");
       map.panTo(new GLatLng(lat,lng), 13);
       return false;
     }});
@@ -56,13 +58,24 @@ socket.bind('userCheckedIn', function(data) {
 });
 
 socket.bind('userCheckedOut', function(data) {
-  alert(data.login + "has checkout out");
-  // addMarker(data);
+  removeMarker(data);
 });
 
 
-function addMarker(place){
-  var marker = new GMarker(new GLatLng(place.latitude, place.longitude));
+function addMarker(data){
+  var marker = new GMarker(new GLatLng(data.latitude, data.longitude));
+  removeMarker(data);
+  markers.push({'marker':marker, 'user_id':data.user_id})
   map.addOverlay(marker);
   return false;
+}
+
+function removeMarker(data){
+  $.each(markers, function(index, value){
+    if (data.user_id == value.user_id){
+      var i = markers.indexOf(value.marker);
+      markers.splice(i, 1);
+      map.removeOverlay(value.marker);
+    }
+  });
 }
