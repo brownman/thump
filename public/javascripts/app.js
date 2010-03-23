@@ -99,6 +99,7 @@ socket.bind('messageBroadcast', function(data) {
     if (data.user_id == value.user_id){
       text = '<div class="msg" id="user_' + data.user_id + '">'+ data.message+'</div>';
       $("#main").append(text);
+      $('.user-info-window#user_'+data.user_id + ' .current_message').text(data.message);
       $('.msg#user_'+data.user_id).css('top', value.marker.$r.y - 30);
       $('.msg#user_'+data.user_id).css('left', value.marker.$r.x + 30);
       $('.msg#user_'+data.user_id).delay(4000).fadeOut('slow');
@@ -117,18 +118,18 @@ function addMarker(data){
   markers.push({'marker':marker, 'user_id':data.user_id})
   map.addOverlay(marker);
   GEvent.addListener(marker, "click", function() {
-    // if ($(".user-info-window#user_"+data.user_id).length == 0){
+    if ($(".user-info-window#user_"+data.user_id).length == 0){
       $.ajax({type:"GET", url:('/users/'+data.user_id), success:function(htmldata){
         $("#main").append(htmldata);
         $('.user-info-window#user_'+data.user_id).css('top', marker.$r.y - 10);
         $('.user-info-window#user_'+data.user_id).css('left', marker.$r.x - 10);
-        return false
+        return false;
       }});
-    // } else {
-    //   $('.user-info-window#user_'+data.user_id).css('top', marker.$r.y - 10);
-    //   $('.user-info-window#user_'+data.user_id).css('left', marker.$r.x - 10);      
-    //   $('.user-info-window#user_'+data.user_id).fadeIn('fast');
-    // }
+    } else {
+      $('.user-info-window#user_'+data.user_id).css('top', marker.$r.y - 10);
+      $('.user-info-window#user_'+data.user_id).css('left', marker.$r.x - 10);      
+      $('.user-info-window#user_'+data.user_id).fadeIn('fast');
+    }
   });
   return false;
 }

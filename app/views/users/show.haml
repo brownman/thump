@@ -4,9 +4,13 @@
   .details.clearfix
     %h1= @user.login
     %p= @user.location.full_address unless @user.location.nil?
-    %p
-      %i= @user.message
+    .current_message= @user.message
   - if current_user == @user 
     %form#message{:action => message_user_path(@user), :method => :post}
       = text_field_tag :message
       = submit_tag "Thump It!"
+  - else
+    %form#message{:action => message_user_path(@user), :method => :post}
+      = text_field_tag :message, :value => "@#{@user.login} "
+      = submit_tag "Thump It!"
+  

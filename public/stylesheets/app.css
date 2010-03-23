@@ -133,6 +133,8 @@ form#update_location {
       font-size: 1.6em; }
     .user-info-window form input[type="submit"] {
       font-size: 1.2em; }
+  .user-info-window .current_message {
+    font-style: italic; }
 
 .msg {
   z-index: 3;
