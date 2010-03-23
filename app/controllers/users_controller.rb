@@ -28,7 +28,7 @@ class UsersController < ApplicationController
       :full_address => full_address, 
       :user_id      => current_user.id,
       :login        => current_user.login,
-      :gravatar_url => current_user.marker.url(:png)
+      :gravatar_url => RAILS_ENV == "development" ? current_user.marker.url(:png) : current_user.gravatar_url
     }
     Pusher['thump-development'].trigger('userCheckedIn', object)
     render :json => object
@@ -43,7 +43,7 @@ class UsersController < ApplicationController
         :latitude     => u.location.latitude,
         :longitude    => u.location.longitude,
         :full_address => u.location.full_address,
-        :gravatar_url => u.marker.url(:png)
+        :gravatar_url => RAILS_ENV == "development" ? u.marker.url(:png) : current_user.gravatar_url
       }
     end
     render :json => collection

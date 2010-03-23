@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   after_update :checkout_if_no_location
   named_scope :without_locations, :conditions => {:location_id => nil}
   image_accessor :marker
-  before_create :generate_marker
+  before_create :generate_marker, :if => :development_environment?
   
   def self.find_by_login_or_email(login)
     find_by_login(login) || find_by_email(login)
@@ -82,6 +82,10 @@ class User < ActiveRecord::Base
   end  
   
   private
+  
+  def development_environment?
+    RAILS_ENV == "development"
+  end
   
   def generate_marker
     tmpfile = Tempfile.new([(RAILS_ROOT+"/tmp/"+ UUID.generate), "png"].compact.join("."))
