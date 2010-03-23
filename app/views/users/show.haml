@@ -1,4 +1,12 @@
 .user-info-window{:id => dom_id(@user)}
+  =link_to "Close", "#", :class => 'close', :id => dom_id(@user)
   = image_tag @user.gravatar_url
-  %h1= @user.login
-  %p= @user.location.full_address unless @user.location.nil?
+  .details.clearfix
+    %h1= @user.login
+    %p= @user.location.full_address unless @user.location.nil?
+    %p
+      %i= @user.message
+  - if current_user == @user 
+    %form#message{:action => message_user_path(@user), :method => :post}
+      = text_field_tag :message
+      = submit_tag "Thump It!"

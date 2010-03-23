@@ -115,4 +115,32 @@ form#update_location {
   background: rgba(0,0,0,0.8);
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
+  color: white;
+  min-width: 30em; }
+  .user-info-window img {
+    float: left;
+    padding-right: 1em; }
+  .user-info-window .details {
+    float: left; }
+    .user-info-window .details h1 {
+      font-size: 1.2em;
+      font-weight: bold; }
+  .user-info-window form {
+    clear: both;
+    float: left;
+    margin-top: 1em; }
+    .user-info-window form input[type="text"] {
+      font-size: 1.6em; }
+    .user-info-window form input[type="submit"] {
+      font-size: 1.2em; }
+
+.msg {
+  z-index: 3;
+  position: absolute;
+  padding: 8px;
+  top: 10px;
+  left: 60px;
+  background: rgba(0,0,0,0.8);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
   color: white; }

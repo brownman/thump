@@ -54,6 +54,21 @@ class UsersController < ApplicationController
     render :json => collection
   end
   
+  def message
+    current_user.update_attribute(:message, params[:message])
+    object = {
+      :latitude     => current_user.location.latitude  || nil, 
+      :longitude    => current_user.location.longitude || nil, 
+      :full_address => current_user.location.full_address || nil, 
+      :user_id      => current_user.id,
+      :login        => current_user.login,
+      :gravatar_url => RAILS_ENV == "development" ? current_user.marker.url(:png) : current_user.gravatar_url,
+      :message      => params[:message]
+    }
+    Pusher['thump-'+RAILS_ENV].trigger('messageBroadcast', object)
+    render :json => {:object => object}
+  end
+  
   private
   
   def check_if_current_user
