@@ -101,7 +101,7 @@ class User < ActiveRecord::Base
   end
   
   def checkout_if_no_location
-    Pusher['thump-development'].trigger('userCheckedOut', {:user_id => id, :login => login}) if location.nil?
+    Pusher['thump-'+RAILS_ENV].trigger('userCheckedOut', {:user_id => id, :login => login}) if location.nil?
   end    
   
 end

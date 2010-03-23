@@ -58,7 +58,13 @@ $(document).ready(function(){
     
 });
 
-var socket = new Pusher('c9f08e8c50f6f0cfb136', 'thump-development');
+jsEnvironments = {
+  'thump.local': 'development',
+  'thump.heroku.com': 'production'  
+};
+jsEnv = jsEnvironments[document.location.host];
+
+var socket = new Pusher('c9f08e8c50f6f0cfb136', 'thump-'+jsEnv);
 
 socket.bind('userCheckedIn', function(data) {
   addMarker(data);
