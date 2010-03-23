@@ -79,7 +79,7 @@ class User < ActiveRecord::Base
   
   def gravatar_url
     "http://www.gravatar.com/avatar/" + MD5::md5(email.downcase).to_s + ".jpg?s=36"
-  end  
+  end
   
   private
   

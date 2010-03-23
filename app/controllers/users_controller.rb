@@ -43,7 +43,7 @@ class UsersController < ApplicationController
         :latitude     => u.location.latitude,
         :longitude    => u.location.longitude,
         :full_address => u.location.full_address,
-        :gravatar_url => RAILS_ENV == "development" ? u.marker.url(:png) : current_user.gravatar_url
+        :gravatar_url => RAILS_ENV == "development" ? u.marker.url(:png) : u.gravatar_url
       }
     end
     render :json => collection
