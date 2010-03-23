@@ -23,6 +23,7 @@
     - flash.each do |key, msg|
       = content_tag(:div, msg, :id => key)
     #main
+      #user-info-windows.hidden
       %form#update_location.hidden{:action => set_location_user_path(current_user), :method => 'post'}
         %input{:type => 'text', :name => "location", :size => 25, :value => "Type your address here"}
         %input{:type => 'submit', :value => 'GO'}

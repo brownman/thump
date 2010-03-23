@@ -1,0 +1,4 @@
+.user-info-window{:id => dom_id(@user)}
+  = image_tag @user.gravatar_url
+  %h1= @user.login
+  %p= @user.location.full_address unless @user.location.nil?

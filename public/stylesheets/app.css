@@ -69,7 +69,8 @@ body {
     border-right: solid 1px white;
     margin-right: 1em; }
     body #location span {
-      color: #D8FF7F; }
+      color: #D8FF7F;
+      cursor: pointer; }
   body .uni {
     background: rgba(0,0,0,0.75);
     z-index: 2;
@@ -104,3 +105,14 @@ form#update_location {
     border: none;
     cursor: pointer;
     font-size: 2em; }
+
+.user-info-window {
+  z-index: 3;
+  position: absolute;
+  padding: 1em;
+  top: 10px;
+  left: 60px;
+  background: rgba(0,0,0,0.8);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  color: white; }

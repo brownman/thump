@@ -11,7 +11,6 @@ $(document).ready(function(){
       addMarker(v);
     });
   }});
-    
   $("a.update_location").click(function(){
     if (navigator.geolocation && navigator.vendor != 'Apple Computer, Inc.') {
       navigator.geolocation.getCurrentPosition(function(position) { 
@@ -27,6 +26,10 @@ $(document).ready(function(){
     } else {
       $("form#update_location").fadeIn("slow");
     }
+  });
+  
+  $('#location span').click(function(){
+    map.panTo(new GLatLng(lat, lng), 13);
   });
   
   $('input[name="location"]').focus(function(){
@@ -54,7 +57,9 @@ $(document).ready(function(){
     return false;
   });
   
-  
+  $('.user-info-window').live('click', function(){
+    $(this).fadeOut('fast');
+  });
     
 });
 
@@ -80,10 +85,19 @@ function addMarker(data){
   baseIcon = new GIcon(G_DEFAULT_ICON);
   baseIcon.image  = data.gravatar_url; //"/images/marker.png" 
   baseIcon.iconSize = new GSize(36, 36); //40, 51
-  baseIcon.iconAnchor = new GPoint(18, 36); //20, 51  
-  var marker = new GMarker(new GLatLng(data.latitude, data.longitude), {icon:baseIcon});
+  baseIcon.iconAnchor = new GPoint(18, 36); //20, 51 
+  var latlng  = new GLatLng(data.latitude, data.longitude);
+  var marker = new GMarker(latlng, {icon:baseIcon});
   markers.push({'marker':marker, 'user_id':data.user_id})
   map.addOverlay(marker);
+  GEvent.addListener(marker, "click", function() {
+    $.ajax({type:"GET", url:('/users/'+data.user_id), success:function(htmldata){
+      $("#main").append(htmldata);
+      $('.user-info-window#user_'+data.user_id).css('top', marker.$r.y - 10);
+      $('.user-info-window#user_'+data.user_id).css('left', marker.$r.x - 10);
+      return false;
+    }});
+  });
   return false;
 }
 
