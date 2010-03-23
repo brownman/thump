@@ -65,6 +65,10 @@ class UsersController < ApplicationController
       :gravatar_url => RAILS_ENV == "development" ? current_user.marker.url(:png) : current_user.gravatar_url,
       :message      => params[:message]
     }
+    unless params[:to_user_id].blank?
+      to_user = User.find(params[:to_user_id])
+      object = object.merge({:to_user_id => to_user.id, :to_user_login => to_user.login}) unless to_user.nil?
+    end
     Pusher['thump-'+RAILS_ENV].trigger('messageBroadcast', object)
     render :json => {:object => object}
   end

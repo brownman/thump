@@ -69,9 +69,16 @@ $(document).ready(function(){
   
   $('form#message').live('submit', function(){
     var user_id = $("a.button.update_location").attr("id");
-    $.ajax({type:"POST", url:'/users/'+user_id+'/message', data:{'message': this.message.value}, success:function(data){
-      $('.user-info-window#user_' + user_id + ' input[type="text"]').value = '';
-      $('.user-info-window#user_'+user_id).fadeOut('fast');
+    if (this.to_user_id == undefined){
+      var window_user_id = user_id;
+      var formData = {'message': this.message.value};
+    } else {
+      var window_user_id = this.to_user_id.value;
+      var formData = {'message': this.message.value, 'to_user_id': this.to_user_id.value};
+    }
+    $.ajax({type:"POST", url:'/users/'+user_id+'/message', data:formData, success:function(data){
+      $('.user-info-window#user_' + window_user_id + ' input[type="text"]').value = '';
+      $('.user-info-window#user_'+window_user_id).fadeOut('fast');
     }});
     return false;    
   });
@@ -95,11 +102,17 @@ socket.bind('userCheckedOut', function(data) {
 });
 
 socket.bind('messageBroadcast', function(data) {
+  console.log(data);
   $.each(markers, function(index, value){
     if (data.user_id == value.user_id){
-      text = '<div class="msg" id="user_' + data.user_id + '">'+ data.message+'</div>';
+      if (data.to_user_id == undefined){
+        var message = data.message;
+      } else {
+        var message = "@" + data.to_user_login + " " + data.message;
+      }
+      text = '<div class="msg" id="user_' + data.user_id + '">'+ message+'</div>';
       $("#main").append(text);
-      $('.user-info-window#user_'+data.user_id + ' .current_message').text(data.message);
+      $('.user-info-window#user_'+data.user_id + ' .current_message').text(message);
       $('.msg#user_'+data.user_id).css('top', value.marker.$r.y - 30);
       $('.msg#user_'+data.user_id).css('left', value.marker.$r.x + 30);
       $('.msg#user_'+data.user_id).delay(4000).fadeOut('slow');

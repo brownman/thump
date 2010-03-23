@@ -6,11 +6,12 @@
     %p= @user.location.full_address unless @user.location.nil?
     .current_message= @user.message
   - if current_user == @user 
-    %form#message{:action => message_user_path(@user), :method => :post}
+    %form#message{:action => message_user_path(current_user), :method => :post}
       = text_field_tag :message
       = submit_tag "Thump It!"
   - else
-    %form#message{:action => message_user_path(@user), :method => :post}
-      = text_field_tag :message, :value => "@#{@user.login} "
+    %form#message{:action => message_user_path(current_user), :method => :post}
+      = text_field_tag :message
+      = hidden_field_tag :to_user_id, @user.id
       = submit_tag "Thump It!"
   
