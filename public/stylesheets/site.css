@@ -1,8 +1,12 @@
+@font-face {
+  font-family: TitilliumText20L;
+  src: url('TitilliumText20L002.otf'); }
+
 body {
   font-size: 62.5%;
   color: white;
-  background: #6D9932;
-  font-family: helvetica, arial; }
+  background: #222;
+  font-family: 'TitilliumText20L', helvetica, arial; }
 
 .row {
   margin: 1em; }
@@ -19,13 +23,15 @@ input[type="text"], input[type="password"] {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border: solid 1px #6D9932;
-  padding: 3px; }
+  padding: 3px;
+  font-family: 'TitilliumText20L', helvetica, arial; }
 
 input[type="submit"] {
   font-size: 2em;
+  font-family: 'TitilliumText20L', helvetica, arial;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
-  background: #413219;
+  background: #6D9932;
   border: solid 1px white;
   color: white;
   padding: 5px; }
@@ -38,6 +44,67 @@ input[type="submit"]:hover {
   width: 96em;
   position: relative; }
   #wrapper #header {
-    padding-top: 10px;
     float: left;
     width: 96em; }
+    #wrapper #header #logo {
+      float: left;
+      font-size: 4em;
+      font-weight: bold; }
+    #wrapper #header #account {
+      font-size: 1.4em;
+      float: right;
+      padding: 0.7em;
+      background: #333;
+      -webkit-border-bottom-right-radius: 5px;
+      -webkit-border-bottom-left-radius: 5px;
+      -moz-border-radius-bottomright: 5px;
+      -moz-border-radius-bottomleft: 5px; }
+      #wrapper #header #account a {
+        color: white; }
+      #wrapper #header #account a:hover {
+        color: #6D9932; }
+  #wrapper .button {
+    background: #6D9932;
+    font-size: 2em;
+    color: white;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    padding: 5px;
+    margin: 0.5em; }
+  #wrapper #main {
+    margin-top: 2em; }
+    #wrapper #main .uni {
+      padding: 2em;
+      -webkit-border-radius: 15px;
+      -moz-border-radius: 15px;
+      background: #333;
+      width: 92em; }
+      #wrapper #main .uni .slogan {
+        float: left;
+        width: 40em; }
+        #wrapper #main .uni .slogan h1 {
+          font-size: 3em;
+          font-weight: normal;
+          margin-bottom: 0.5em; }
+        #wrapper #main .uni .slogan p {
+          margin: 1em 0em;
+          font-size: 2em; }
+          #wrapper #main .uni .slogan p a {
+            color: #82E449; }
+          #wrapper #main .uni .slogan p a:hover {
+            color: #6D9932; }
+        #wrapper #main .uni .slogan p.disclaimer {
+          background: yellow;
+          color: black;
+          font-family: Monaco;
+          font-size: 1.4em;
+          padding: 0.5em;
+          -webkit-border-radius: 5px;
+          -moz-border-radius: 5px; }
+      #wrapper #main .uni .mainshot {
+        margin-left: 2em;
+        float: right;
+        box-shadow: 1px 1px 3px white;
+        width: 30em;
+        height: 25em;
+        background: blue; }

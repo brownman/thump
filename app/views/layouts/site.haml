@@ -8,8 +8,8 @@
       - flash.each do |key, msg|
         = content_tag(:div, msg, :id => key)
       #header
-        .left= image_tag("thump-logo.png")
-        .right
+        #logo Thump
+        #account
           - if current_user
             = link_to "Settings", settings_user_path(current_user)
             |            

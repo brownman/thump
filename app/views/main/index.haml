@@ -1,5 +1,10 @@
-- if logged_in?
-  %h1 DISPLAY GOOGLE MAP HERE
-- else
-  %h1 Home Page
-  %p [TODO] - figure out what content you want to put here
+- unless logged_in?
+  .uni.clearfix
+    .slogan
+      %h1 See who's around
+      %p
+        = "Thump is a location-aware social network, built by " + link_to("New Bamboo's", "http://new-bamboo.co.uk") + " " + link_to("Paul Jensen", "http://twitter.com/paulbjensen") + " to demonstrate the awesomeness of " + link_to("Pusher", "http://pusherapp.com") + "."    
+      %p.disclaimer
+        Disclaimer - Paul bashed it out during his holidays, therefore it's alpha software! 
+    .mainshot
+      

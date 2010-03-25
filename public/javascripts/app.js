@@ -12,7 +12,7 @@ $(document).ready(function(){
     });
   }});
   $("a.update_location").click(function(){
-    if (navigator.geolocation && navigator.vendor != 'Apple Computer, Inc.') {
+    if (1==0){//(navigator.geolocation && navigator.vendor != 'Apple Computer, Inc.') {
       navigator.geolocation.getCurrentPosition(function(position) { 
         var user_id = $("a.button.update_location").attr("id");
         lat = position.coords.latitude;
@@ -113,8 +113,8 @@ socket.bind('messageBroadcast', function(data) {
       text = '<div class="msg" id="user_' + data.user_id + '">'+ message+'</div>';
       $("#main").append(text);
       $('.user-info-window#user_'+data.user_id + ' .current_message').text(message);
-      $('.msg#user_'+data.user_id).css('top', value.marker.$r.y - 30);
-      $('.msg#user_'+data.user_id).css('left', value.marker.$r.x + 30);
+      $('.msg#user_'+data.user_id).css('top', map.fromLatLngToContainerPixel(value.marker.getLatLng()).y - 40);
+      $('.msg#user_'+data.user_id).css('left', map.fromLatLngToContainerPixel(value.marker.getLatLng()).x + 20);
       $('.msg#user_'+data.user_id).delay(4000).fadeOut('slow');
     }
   }); 
@@ -134,13 +134,14 @@ function addMarker(data){
     if ($(".user-info-window#user_"+data.user_id).length == 0){
       $.ajax({type:"GET", url:('/users/'+data.user_id), success:function(htmldata){
         $("#main").append(htmldata);
-        $('.user-info-window#user_'+data.user_id).css('top', marker.$r.y - 10);
-        $('.user-info-window#user_'+data.user_id).css('left', marker.$r.x - 10);
+        myMarker = marker;
+        $('.user-info-window#user_'+data.user_id).css('top', map.fromLatLngToContainerPixel(marker.getLatLng()).y - 50);
+        $('.user-info-window#user_'+data.user_id).css('left', map.fromLatLngToContainerPixel(marker.getLatLng()).x - 30);
         return false;
       }});
     } else {
-      $('.user-info-window#user_'+data.user_id).css('top', marker.$r.y - 10);
-      $('.user-info-window#user_'+data.user_id).css('left', marker.$r.x - 10);      
+      $('.user-info-window#user_'+data.user_id).css('top', map.fromLatLngToContainerPixel(marker.getLatLng()).y - 50);
+      $('.user-info-window#user_'+data.user_id).css('left', map.fromLatLngToContainerPixel(marker.getLatLng()).x - 30);      
       $('.user-info-window#user_'+data.user_id).fadeIn('fast');
     }
   });
