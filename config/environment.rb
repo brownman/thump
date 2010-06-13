@@ -7,7 +7,7 @@ Rails::Initializer.run do |config|
   config.gem 'authlogic',           :version => '2.1.3'
   config.gem 'inherited_resources', :version => '0.9.2'
   config.gem 'geokit',              :version => '1.5.0'
-  config.gem 'pusher',              :version => '0.3.0'
+  config.gem 'pusher',              :version => '0.5.3'
   config.gem 'uuid'
   config.gem 'dragonfly'
   config.time_zone = 'UTC'
@@ -18,4 +18,6 @@ Rails::Initializer.run do |config|
 
 end
 
-Pusher.key = 'c9f08e8c50f6f0cfb136'
+Pusher.app_id = 17
+Pusher.key    = 'c9f08e8c50f6f0cfb136'
+Pusher.secret = '5eeec6ac0f4da8ad248a'
